@@ -1,0 +1,349 @@
+<div class="min-h-screen bg-stone-50 font-sans text-stone-900">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-red-700">restaurant</mat-icon>
+        <span class="text-xl font-bold tracking-tight text-red-800 font-serif">Madeirense</span>
+      </div>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="#menu" class="text-sm font-bold text-red-700 transition-all hover:-translate-y-0.5">{{ t().nav.menu }}</a>
+        <a href="#reviews" class="text-sm font-medium text-stone-600 hover:text-red-700 transition-all hover:-translate-y-0.5">{{ t().nav.reviews }}</a>
+        <a href="#reservation" class="text-sm font-medium text-stone-600 hover:text-red-700 transition-all hover:-translate-y-0.5">{{ t().nav.reservation }}</a>
+        <a href="#contact" class="text-sm font-medium text-stone-600 hover:text-red-700 transition-all hover:-translate-y-0.5">{{ t().nav.contact }}</a>
+        <select [value]="lang()" (change)="setLang($event)" class="ml-4 bg-transparent text-stone-600 font-medium outline-none cursor-pointer hover:text-red-700 transition-colors">
+          <option value="pt">PT</option>
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+      </nav>
+      <div class="md:hidden flex items-center gap-4">
+        <select [value]="lang()" (change)="setLang($event)" class="bg-transparent text-stone-600 font-medium outline-none cursor-pointer">
+          <option value="pt">PT</option>
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="text-stone-600 hover:text-red-700 transition-transform hover:scale-110" (click)="toggleMobileMenu()">
+          <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen) {
+      <div class="md:hidden bg-white border-t border-stone-100 absolute w-full shadow-lg">
+        <div class="flex flex-col px-4 pt-2 pb-6 space-y-4">
+          <a href="#menu" (click)="closeMobileMenu()" class="text-base font-bold text-red-700">{{ t().nav.menu }}</a>
+          <a href="#reviews" (click)="closeMobileMenu()" class="text-base font-medium text-stone-600 hover:text-red-700">{{ t().nav.reviews }}</a>
+          <a href="#reservation" (click)="closeMobileMenu()" class="text-base font-medium text-stone-600 hover:text-red-700">{{ t().nav.reservation }}</a>
+          <a href="#contact" (click)="closeMobileMenu()" class="text-base font-medium text-stone-600 hover:text-red-700">{{ t().nav.contact }}</a>
+        </div>
+      </div>
+    }
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/seed/steakhouse/1920/1080" alt="Restaurant Interior" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 drop-shadow-lg">{{ t().hero.title }}</h1>
+      <p class="text-lg md:text-xl text-stone-200 mb-8 font-light">{{ t().hero.subtitle }}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#reservation" class="group bg-red-700 hover:bg-red-800 text-white px-8 py-3 rounded-full font-medium transition-all hover:-translate-y-1 hover:shadow-lg inline-flex items-center justify-center gap-2">
+          <mat-icon class="group-hover:scale-110 transition-transform">calendar_today</mat-icon>
+          {{ t().hero.bookTable }}
+        </a>
+        <a href="https://orders.winrestbooking.com/StoreMenu/Index/6152" target="_blank" class="group bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 px-8 py-3 rounded-full font-medium transition-all hover:-translate-y-1 hover:shadow-lg inline-flex items-center justify-center gap-2">
+          <mat-icon class="group-hover:scale-110 transition-transform">restaurant_menu</mat-icon>
+          {{ t().hero.viewMenu }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Bar -->
+  <div class="bg-red-800 text-white py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-red-300">location_on</mat-icon>
+        <span>{{ t().info.address }}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-red-300">schedule</mat-icon>
+        <span>{{ t().info.hours }}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-red-300">phone</mat-icon>
+        <span>{{ t().info.phone }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Highlights -->
+  <section id="menu" class="py-20 bg-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4">{{ t().highlights.title }}</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">{{ t().highlights.subtitle }}</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        @for (item of menuItems(); track item.name) {
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+            <div class="h-48 overflow-hidden relative">
+              <img [src]="item.image" [alt]="item.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerpolicy="no-referrer" />
+              <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-red-700 uppercase tracking-wider">
+                {{item.price}}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-stone-900 mb-2">{{item.name}}</h3>
+              <p class="text-stone-600 text-sm line-clamp-2">{{item.description}}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Menus Section -->
+  <section class="py-24 bg-stone-900 relative overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/seed/madeirawine/1920/1080?blur=2" alt="Wine and Food" class="w-full h-full object-cover opacity-40" referrerpolicy="no-referrer" />
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-transparent"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6">{{ t().fullMenu.title }}</h2>
+      <p class="text-stone-300 text-lg max-w-2xl mx-auto mb-12">{{ t().fullMenu.subtitle }}</p>
+      
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="https://orders.winrestbooking.com/StoreMenu/Index/6152" target="_blank" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-stone-800/50 hover:bg-stone-700/60 backdrop-blur-md border border-white/20 text-white font-medium text-lg transition-all hover:-translate-y-1 hover:shadow-xl">
+          <mat-icon>restaurant</mat-icon>
+          {{ t().fullMenu.btnMenu }}
+        </a>
+        <a href="https://orders.winrestbooking.com/StoreMenu/Index/6152" target="_blank" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-stone-800/50 hover:bg-stone-700/60 backdrop-blur-md border border-white/20 text-white font-medium text-lg transition-all hover:-translate-y-1 hover:shadow-xl">
+          <mat-icon>wine_bar</mat-icon>
+          {{ t().fullMenu.btnWine }}
+        </a>
+        <a href="https://orders.winrestbooking.com/StoreMenu/Index/6152" target="_blank" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-stone-800/50 hover:bg-stone-700/60 backdrop-blur-md border border-white/20 text-white font-medium text-lg transition-all hover:-translate-y-1 hover:shadow-xl">
+          <mat-icon>local_cafe</mat-icon>
+          {{ t().fullMenu.btnDessert }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4">{{ t().reviews.title }}</h2>
+          <div class="flex items-center gap-4">
+            <div class="flex text-amber-400">
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star_half</mat-icon>
+            </div>
+            <span class="text-2xl font-bold text-stone-900">4.2</span>
+            <span class="text-stone-500">Based on 1,261 reviews</span>
+          </div>
+        </div>
+        <a href="https://madeirenseluanda.com" target="_blank" class="text-red-700 font-medium hover:text-red-800 flex items-center gap-1">
+          Read more reviews <mat-icon class="text-sm">arrow_forward</mat-icon>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @for (review of reviews(); track review.author) {
+          <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100">
+            <div class="flex text-amber-400 mb-4">
+              @for (i of [1,2,3,4,5]; track i) {
+                <mat-icon class="text-sm">star</mat-icon>
+              }
+            </div>
+            <p class="text-stone-700 italic mb-6">"{{review.text}}"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-700 font-bold">
+                {{review.author.charAt(0)}}
+              </div>
+              <div>
+                <p class="font-bold text-stone-900">{{review.author}}</p>
+                <p class="text-xs text-stone-500">Local Guide</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Section -->
+  <section id="reservation" class="py-20 bg-stone-50 border-t border-stone-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4">{{ t().reservation.title }}</h2>
+        <p class="text-stone-600">{{ t().reservation.subtitle }}</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+        @if (reservationSuccess) {
+          <div class="bg-green-50 text-green-800 p-8 rounded-xl text-center">
+            <mat-icon class="text-green-600 text-5xl mb-4">check_circle</mat-icon>
+            <h3 class="text-2xl font-bold mb-2">{{ t().reservation.successTitle }}</h3>
+            <p class="mb-6">{{ t().reservation.successText }}</p>
+            <button (click)="resetReservation()" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+              {{ t().reservation.successBtn }}
+            </button>
+          </div>
+        } @else {
+          <form [formGroup]="reservationForm" (ngSubmit)="submitReservation()" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.name }}</label>
+                <input id="name" type="text" formControlName="name" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all" [placeholder]="t().reservation.namePlaceholder">
+                @if (reservationForm.get('name')?.touched && reservationForm.get('name')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.nameReq }}</span>
+                }
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.email }}</label>
+                <input id="email" type="email" formControlName="email" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all" [placeholder]="t().reservation.emailPlaceholder">
+                @if (reservationForm.get('email')?.touched && reservationForm.get('email')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.emailReq }}</span>
+                }
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.phone }}</label>
+                <input id="phone" type="tel" formControlName="phone" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all" [placeholder]="t().reservation.phonePlaceholder">
+                @if (reservationForm.get('phone')?.touched && reservationForm.get('phone')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.phoneReq }}</span>
+                }
+              </div>
+              <div>
+                <label for="guests" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.guests }}</label>
+                <input id="guests" type="number" formControlName="guests" min="1" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all">
+                @if (reservationForm.get('guests')?.touched && reservationForm.get('guests')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.guestsReq }}</span>
+                }
+              </div>
+              <div>
+                <label for="date" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.date }}</label>
+                <input id="date" type="date" formControlName="date" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all">
+                @if (reservationForm.get('date')?.touched && reservationForm.get('date')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.dateReq }}</span>
+                }
+              </div>
+              <div>
+                <label for="time" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.time }}</label>
+                <input id="time" type="time" formControlName="time" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all">
+                @if (reservationForm.get('time')?.touched && reservationForm.get('time')?.invalid) {
+                  <span class="text-red-500 text-xs mt-1 block">{{ t().reservation.timeReq }}</span>
+                }
+              </div>
+            </div>
+            <div>
+              <label for="requests" class="block text-sm font-medium text-stone-700 mb-1">{{ t().reservation.requests }}</label>
+              <textarea id="requests" formControlName="requests" rows="3" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition-all" [placeholder]="t().reservation.requestsPlaceholder"></textarea>
+            </div>
+            
+            @if (reservationError) {
+              <div class="p-4 text-sm text-red-800 rounded-lg bg-red-50">
+                {{ t().reservation.errorMsg }}
+              </div>
+            }
+            
+            <button type="submit" [disabled]="isSubmitting" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2">
+              @if (isSubmitting) {
+                <mat-icon class="animate-spin">autorenew</mat-icon>
+                {{ t().reservation.submitting }}
+              } @else {
+                {{ t().reservation.submit }}
+              }
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Contact -->
+  <section id="contact" class="py-20 bg-stone-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold mb-8">{{ t().contact.title }}</h2>
+          <p class="text-stone-400 mb-8 max-w-md">{{ t().contact.subtitle }}</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <mat-icon class="text-red-400">location_on</mat-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-1">{{ t().contact.addressTitle }}</h4>
+                <p class="text-stone-400">{{ t().contact.address1 }}<br>{{ t().contact.address2 }}<br><span class="text-sm text-stone-500">{{ t().contact.address3 }}</span></p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <mat-icon class="text-red-400">schedule</mat-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-1">{{ t().contact.hoursTitle }}</h4>
+                <p class="text-stone-400">{{ t().contact.hours1 }}</p>
+                <p class="text-sm text-stone-500 mt-1">{{ t().contact.hours2 }}</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <mat-icon class="text-red-400">phone</mat-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-1">{{ t().contact.contactTitle }}</h4>
+                <p class="text-stone-400">+244 932 056 860</p>
+                <a href="https://madeirenseluanda.com" target="_blank" class="text-red-400 hover:text-red-300 text-sm mt-1 inline-block">madeirenseluanda.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="h-[400px] rounded-2xl overflow-hidden shadow-2xl relative bg-stone-800">
+          <iframe 
+            src="https://maps.google.com/maps?q=Rua%20de%20Jose%20Anchieta%2019,%20Luanda,%20Angola&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-stone-950 text-stone-500 py-8 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <mat-icon class="text-red-700">restaurant</mat-icon>
+        <span class="text-lg font-bold text-stone-300 font-serif">Madeirense</span>
+      </div>
+      <p class="text-sm">{{ t().footer.copyright }}</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-stone-300 transition-colors"><mat-icon class="text-xl">facebook</mat-icon></a>
+        <a href="#" class="hover:text-stone-300 transition-colors"><mat-icon class="text-xl">photo_camera</mat-icon></a>
+      </div>
+    </div>
+  </footer>
+</div>
