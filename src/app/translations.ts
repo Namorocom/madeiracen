@@ -19,7 +19,11 @@ export const translations = {
         { name: 'Espetada à Madeirense', description: 'Tradicionais espetadas de carne de vaca grelhadas na perfeição.', price: 'Popular' },
         { name: 'Poncha de Maracujá', description: 'Refrescante cocktail de maracujá.', price: 'Popular' },
         { name: 'Bolo do Caco', description: 'Pão tradicional madeirense com manteiga de alho.', price: 'Entrada' },
-        { name: 'Bife com Milho Frito', description: 'Bife fatiado servido com milho frito.', price: 'Principal' }
+        { name: 'Bife com Milho Frito', description: 'Bife fatiado servido com milho frito.', price: 'Principal' },
+        { name: 'Espada com Banana', description: 'Filete de peixe-espada preto frito servido com banana frita.', price: 'Principal' },
+        { name: 'Lapas Grelhadas', description: 'Lapas grelhadas na frigideira com manteiga, alho e limão.', price: 'Entrada' },
+        { name: 'Picadinho Madeirense', description: 'Cubos de carne de vaca fritos com alho, servidos com batatas fritas.', price: 'Para Partilhar' },
+        { name: 'Pudim de Maracujá', description: 'Sobremesa fresca e deliciosa de maracujá.', price: 'Sobremesa' }
       ]
     },
     fullMenu: {
@@ -106,7 +110,11 @@ export const translations = {
         { name: 'Espetada à Madeirense', description: 'Traditional beef skewers grilled to perfection.', price: 'Popular' },
         { name: 'Poncha de Maracujá', description: 'Refreshing passion fruit cocktail.', price: 'Popular' },
         { name: 'Bolo do Caco', description: 'Traditional Madeiran flatbread with garlic butter.', price: 'Starter' },
-        { name: 'Bife com Milho Frito', description: 'Sliced steak served with fried cornmeal.', price: 'Main' }
+        { name: 'Bife com Milho Frito', description: 'Sliced steak served with fried cornmeal.', price: 'Main' },
+        { name: 'Espada com Banana', description: 'Fried black scabbard fish fillet served with fried banana.', price: 'Main' },
+        { name: 'Lapas Grelhadas', description: 'Grilled limpets in a pan with butter, garlic, and lemon.', price: 'Starter' },
+        { name: 'Picadinho Madeirense', description: 'Fried beef cubes with garlic, served with french fries.', price: 'To Share' },
+        { name: 'Pudim de Maracujá', description: 'Fresh and delicious passion fruit dessert.', price: 'Dessert' }
       ]
     },
     fullMenu: {
@@ -193,7 +201,11 @@ export const translations = {
         { name: 'Espetada à Madeirense', description: 'Brochettes de bœuf traditionnelles grillées à la perfection.', price: 'Populaire' },
         { name: 'Poncha de Maracujá', description: 'Cocktail rafraîchissant aux fruits de la passion.', price: 'Populaire' },
         { name: 'Bolo do Caco', description: 'Pain plat traditionnel de Madère au beurre d\'ail.', price: 'Entrée' },
-        { name: 'Bife com Milho Frito', description: 'Steak en tranches servi avec de la semoule de maïs frite.', price: 'Plat' }
+        { name: 'Bife com Milho Frito', description: 'Steak en tranches servi avec de la semoule de maïs frite.', price: 'Plat' },
+        { name: 'Espada com Banana', description: 'Filet de poisson-sabre noir frit servi avec de la banane frite.', price: 'Plat' },
+        { name: 'Lapas Grelhadas', description: 'Patelles grillées à la poêle avec du beurre, de l\'ail et du citron.', price: 'Entrée' },
+        { name: 'Picadinho Madeirense', description: 'Cubes de bœuf frits à l\'ail, servis avec des frites.', price: 'À Partager' },
+        { name: 'Pudim de Maracujá', description: 'Dessert frais et délicieux aux fruits de la passion.', price: 'Dessert' }
       ]
     },
     fullMenu: {

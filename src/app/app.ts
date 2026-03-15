@@ -38,10 +38,14 @@ export class App {
   menuItems = computed(() => {
     const items = this.t().highlights.items;
     return [
-      { ...items[0], image: 'https://picsum.photos/seed/espetada/400/300' },
-      { ...items[1], image: 'https://picsum.photos/seed/poncha/400/300' },
-      { ...items[2], image: 'https://picsum.photos/seed/bolodocaco/400/300' },
-      { ...items[3], image: 'https://picsum.photos/seed/milhofrito/400/300' },
+      { ...items[0], image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop' },
+      { ...items[1], image: 'https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&h=300&fit=crop' },
+      { ...items[2], image: 'https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?w=400&h=300&fit=crop' },
+      { ...items[3], image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop' },
+      { ...items[4], image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&h=300&fit=crop' },
+      { ...items[5], image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop' },
+      { ...items[6], image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop' },
+      { ...items[7], image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop' },
     ];
   });
 
